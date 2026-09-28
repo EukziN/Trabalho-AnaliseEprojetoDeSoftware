@@ -1,0 +1,86 @@
+CREATE DATABASE "trabDarlon"
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LOCALE_PROVIDER = 'libc'
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
+
+CREATE SCHEMA IF NOT EXISTS "trabDarlon"
+    AUTHORIZATION postgres;
+
+
+-------------------------
+TABLE CLIENTE
+
+create table tb_cliente(
+id serial,
+nome varchar (55),
+cpf varchar(11),
+endereco varchar (255),
+primary key (id)
+);
+
+-----------------------------
+TABLE FUNCIONARIO
+
+create table tb_funcionario(
+id serial,
+nome varchar (55),
+cpf varchar (55),
+data_inclusao date,
+primary key (id)
+);
+
+-----------------------------
+
+TABLE PRODUTO
+create table tb_produto(
+id serial,
+nome varchar (55),
+descricao varchar (255),
+valor numeric(10, 2),
+primary key (id)
+);
+
+
+----------------------------
+
+TABLE COMPRA
+create table tb_compra(
+id serial,
+valor_total numeric (10,2),
+data_compra date,
+cliente_id int,
+funcionario_id int,
+primary key(id),
+foreign key (cliente_id) references tb_cliente (id),
+foreign key (funcionario_id) references tb_funcionario(id)
+);
+
+-----------------------------
+
+TABLE ITEM_COMPRA
+
+create table tb_itemCompra(
+id serial,
+quantidade int,
+valor_unit numeric (10,2),
+produto_id int,
+compra_id int,
+primary key(id),
+foreign key (produto_id) references tb_produto (id),
+foreign key (compra_id) references tb_compra(id)
+);
+
+-----------------------------
+
+TABLE USUARIO
+
+create table tb_usuario(
+id serial,
+email varchar(255),
+senha varchar(255),
+primary key(id)
+);
