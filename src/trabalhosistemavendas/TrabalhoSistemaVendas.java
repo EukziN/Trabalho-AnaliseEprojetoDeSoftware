@@ -5,17 +5,12 @@
  */
 package trabalhosistemavendas;
 
-/**
- *
- * @author grobeuszk
- */
+import br.com.sistema.view.TelaLogin;
+
 public class TrabalhoSistemaVendas {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        TelaLogin tela = new TelaLogin();
+        tela.setVisible(true);
     }
-    
 }
